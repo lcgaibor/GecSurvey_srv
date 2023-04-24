@@ -1,7 +1,7 @@
 import Usuario from '../models/usuario.model'
 
 export const loguearUsuario = async (req, res, next) => {
-    console.log(req.body)
+
     if (req.body.usuario == "" || req.body.contrasenia == "") {
         return res.status(200).send();
     }
@@ -14,7 +14,7 @@ export const loguearUsuario = async (req, res, next) => {
 }
 
 export const registrarUsuario = async (req, res) => {
-    console.log(req.body)
+
     if (req.body.usuario == "" || req.body.contrasenia == "") {
         return res.status(200).send();
     }
@@ -48,6 +48,7 @@ export const darUsuarioConEncuestas = async (req, res) => {
           $project: {
             nombre: 1,
             apellido:1,
+            contrasenia:1,
             encuestasRealizadas: { $size: '$encuestas' }
           }
         }
@@ -55,6 +56,22 @@ export const darUsuarioConEncuestas = async (req, res) => {
     if (!usuario) {
         return res.status(200).send();
     } else {
-        return res.send(usuario);
+        return res.send(usuario[0]);
+    }
+}
+
+export const actualizarUsuario = async (req, res) => {
+
+    if (req.params.usuario == "") {
+        return res.status(200).send();
+    }
+    const usuario = await Usuario.findOneAndUpdate(
+        { usuario: req.params.usuario }, 
+        { $set: req.body},{new: true});
+
+    if (!usuario) {
+        res.status(500).json({ mensaje: 'Error al actualizar usuario' });
+    } else {
+        return res.status(200).json({ status: 1 });
     }
 }

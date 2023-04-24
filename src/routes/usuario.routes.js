@@ -4,6 +4,6 @@ import * as UsuarioCtrl from '../controllers/usuario.controller'
 const router = Router();
 
 router.post('/', UsuarioCtrl.darUsuarioConEncuestas);
-//router.post('/signup', LoginCtrl.registrarUsuario);
+router.put('/:usuario', UsuarioCtrl.actualizarUsuario);
 
 export default router;
