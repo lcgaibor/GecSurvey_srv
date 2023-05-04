@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 
-app.use('/login',LoginRoute);
-app.use('/usuario',UsuarioRoute);
-app.use('/encuesta',EncuestaRoute);
+app.use('/loginVin',LoginRoute);
+app.use('/usuarioVin',UsuarioRoute);
+app.use('/encuestaVin',EncuestaRoute);
 
 export default app;

@@ -2,5 +2,5 @@ import { config } from "dotenv"
 config();
 
 export default{
-    mongodbURL:process.env.MONGODB_URI,
+    mongodbURLVIN:process.env.MONGODB_URI_VIN,
 }
