@@ -11,7 +11,7 @@ export const registrarEncuesta = async (req, res) => {
         "cedula": req.body.cedula,
         "telefono": req.body.telefono,
         "direccion": req.body.direccion,
-        "fNac": req.body.fNac,
+        "fNac": new Date(req.body.fNac),
         "correo": req.body.correo
     }
 
